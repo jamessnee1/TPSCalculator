@@ -16,8 +16,10 @@ public class Main {
 		System.out.println("---------------------\n\n");
 		System.out.println("Using Little's Law, This program will calculate the number of");
 		System.out.println("concurrent users to use in a Test Case scenario/Thread group");
-		System.out.println("for JMeter. Please note that Think Time is for the overall");
-		System.out.println("scenario, and Pacing is per test case step, which we use here.\n\n");
+		System.out.println("for JMeter. Please note that generally Think Time is for the overall");
+		System.out.println("scenario and Pacing is per test case step, but you will");
+		System.out.println("need to input the pacing for the overall scenario because you may");
+		System.out.println("want to have different pacings for different steps.\n\n");
 
 		System.out.print("Please enter a test case name (press enter for none): ");
 		testCaseName = input.nextLine();
