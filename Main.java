@@ -7,7 +7,7 @@ public class Main {
 
 		Scanner input = new Scanner(System.in);
 		double oneExecution = 0.0, pacingTime = 0.0, finalTps = 0.0, tpsHour = 0.0, tpsMin = 0.0, tpsSec = 0.0, numOfUsers = 0.0;
-		String testCaseName = null;
+		String testCaseName = null, strOneExecution = null;
 		char tpsChoice;
 
 		System.out.println("\n\n");
@@ -22,14 +22,29 @@ public class Main {
 		System.out.print("Please enter a test case name: ");
 		testCaseName = input.nextLine();
 
-			
-		System.out.println("Please enter the time it takes for one Test Case to execute: ");
-		System.out.print("(Enter in seconds): ");
-		oneExecution = input.nextDouble();
+		do{
+			System.out.println("Please enter the time it takes for " + testCaseName + " to execute: ");
+			System.out.print("(Enter in seconds): ");
+			strOneExecution = input.nextLine();
+
+			if(!strOneExecution.matches("[0-9.]+")){
+				System.out.println("Error: Please only input numbers!");
+			}
+			else {
+				strOneExecution = strOneExecution.replaceAll("\\D+W+", "");
+				oneExecution = Double.parseDouble(strOneExecution);
+				System.out.printf("Execution time is %.2f\n", oneExecution);
+
+			}
+
+		}
+		while(oneExecution == 0.0);
+		
 
 
 		System.out.print("Please enter any pacing you wish to add (press enter for none): ");
 		pacingTime = input.nextDouble();
+
 
 		do {
 			System.out.println("Is your Transactions Per Second(TPS) in hours, minutes or seconds?");
@@ -75,11 +90,12 @@ public class Main {
 
 		}
 
-		System.out.println("\n\nCalculating number of users required....");
+		System.out.println("\n\nCalculating number of users required....\n\n");
 		
 
 		//do Littles Law calculation
 		numOfUsers = (oneExecution + pacingTime) * finalTps;
+		System.out.println("==================================================");
 		System.out.println("Test Case: " + testCaseName);
 		System.out.printf("Time taken for one execution: %.2f\n", oneExecution);
 
@@ -89,6 +105,7 @@ public class Main {
 		System.out.println("TPS Format: " + tpsChoice);
 		System.out.printf("Transactions Per Second: %.2f\n", finalTps);
 		System.out.printf("Your number of concurrent users is: %.2f\n", numOfUsers);
+		System.out.println("==================================================");
 
 
 	}
