@@ -7,7 +7,7 @@ public class Main {
 
 		Scanner input = new Scanner(System.in);
 		double oneExecution = 0.0, pacingTime = 0.0, finalTps = 0.0, tpsHour = 0.0, tpsMin = 0.0, tpsSec = 0.0, numOfUsers = 0.0;
-		String testCaseName = null, strOneExecution = null, strInput = null;
+		String testCaseName = null, strOneExecution = null, strInput = null, tpsChoiceName = null;
 		char tpsChoice;
 
 		System.out.println("\n\n");
@@ -19,11 +19,17 @@ public class Main {
 		System.out.println("for JMeter. Please note that Think Time is for the overall");
 		System.out.println("scenario, and Pacing is per test case step, which we use here.\n\n");
 
-		System.out.print("Please enter a test case name: ");
+		System.out.print("Please enter a test case name (press enter for none): ");
 		testCaseName = input.nextLine();
 
 		do{
-			System.out.println("Please enter the time it takes for " + testCaseName + " to execute: ");
+			if(testCaseName.isEmpty()){
+				System.out.println("Please enter the time it takes for test case to execute: ");
+			}
+			else{
+				System.out.println("Please enter the time it takes for " + testCaseName + " to execute: ");
+			}
+			
 			System.out.print("(Enter in seconds): ");
 			strOneExecution = input.nextLine();
 
@@ -33,7 +39,7 @@ public class Main {
 			else {
 				strOneExecution = strOneExecution.replaceAll("\\D+W+", "");
 				oneExecution = Double.parseDouble(strOneExecution);
-				System.out.printf("Execution time is %.2f\n", oneExecution);
+				//System.out.printf("Execution time is %.2f\n", oneExecution);
 
 			}
 
@@ -82,26 +88,32 @@ public class Main {
 				tpsHour = input.nextDouble();
 				//for hours, divide by 60 to get mins, and then 60 again to get seconds (final calc has to be in secs)
 				finalTps = tpsHour / 3600;
+				tpsChoiceName = "Hours";
 				break;
 			case 'H':
 				tpsHour = input.nextDouble();
 				finalTps = tpsHour / 3600;
+				tpsChoiceName = "Hours";
 				break;
 			case 'm':
 				tpsMin = input.nextDouble();
 				finalTps = tpsMin / 60;
+				tpsChoiceName = "Minutes";
 				break;
 			case 'M':
 				tpsMin = input.nextDouble();
 				finalTps = tpsMin / 60;
+				tpsChoiceName = "Minutes";
 				break;
 			case 's':
 				tpsSec = input.nextDouble();
 				finalTps = tpsSec;
+				tpsChoiceName = "Seconds";
 				break;
 			case 'S':
 				tpsSec = input.nextDouble();
 				finalTps = tpsSec;
+				tpsChoiceName = "Seconds";
 				break;				
 
 		}
@@ -112,15 +124,23 @@ public class Main {
 		//do Littles Law calculation
 		numOfUsers = (oneExecution + pacingTime) * finalTps;
 		System.out.println("==================================================");
-		System.out.println("Test Case: " + testCaseName);
-		System.out.printf("Time taken for one execution: %.2f\n", oneExecution);
+
+		if(testCaseName.isEmpty()){
+			System.out.println("Test Case");
+		}
+		else{
+			System.out.println("Test Case: " + testCaseName);
+		}
+
+		System.out.printf("Time taken for one execution: %.2f seconds\n", oneExecution);
 
 		if(pacingTime > 0){
-			System.out.printf("Pacing chosen: %.2f\n", pacingTime);
+			System.out.printf("Pacing chosen: %.2f seconds\n", pacingTime);
 		}
-		System.out.println("TPS Format: " + tpsChoice);
-		System.out.printf("Transactions Per Second: %.2f\n", finalTps);
-		System.out.printf("Your number of concurrent users is: %.2f\n", numOfUsers);
+
+		System.out.println("TPS Format: " + tpsChoiceName);
+		System.out.printf("Transactions Per Second: %.2f seconds\n", finalTps);
+		System.out.printf("Your number of concurrent users is: %.2f users\n", numOfUsers);
 		System.out.println("==================================================");
 
 
