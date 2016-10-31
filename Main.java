@@ -7,7 +7,7 @@ public class Main {
 
 		Scanner input = new Scanner(System.in);
 		double oneExecution = 0.0, pacingTime = 0.0, finalTps = 0.0, tpsHour = 0.0, tpsMin = 0.0, tpsSec = 0.0, numOfUsers = 0.0;
-		String testCaseName = null, strOneExecution = null, strInput = null, tpsChoiceName = null, prompt = null;
+		String testCaseName = null, strOneExecution = null, temp_tps = null, strInput = null, tpsChoiceName = null, prompt = null;
 		char tpsChoice;
 
 		System.out.println("\n\n");
@@ -93,43 +93,73 @@ public class Main {
 		}
 		while(tpsChoice != 'h' && tpsChoice != 'm' && tpsChoice != 's' && tpsChoice != 'H' && tpsChoice != 'M' && tpsChoice != 'S');
 
-		System.out.print(prompt);
+		//get around scanner bug
+		input.nextLine();
 
-		switch(tpsChoice){
+		do {
 
-			case 'h':
-				tpsHour = input.nextDouble();
-				//for hours, divide by 60 to get mins, and then 60 again to get seconds (final calc has to be in secs)
-				finalTps = tpsHour / 3600;
-				tpsChoiceName = "Hours";
-				break;
-			case 'H':
-				tpsHour = input.nextDouble();
-				finalTps = tpsHour / 3600;
-				tpsChoiceName = "Hours";
-				break;
-			case 'm':
-				tpsMin = input.nextDouble();
-				finalTps = tpsMin / 60;
-				tpsChoiceName = "Minutes";
-				break;
-			case 'M':
-				tpsMin = input.nextDouble();
-				finalTps = tpsMin / 60;
-				tpsChoiceName = "Minutes";
-				break;
-			case 's':
-				tpsSec = input.nextDouble();
-				finalTps = tpsSec;
-				tpsChoiceName = "Seconds";
-				break;
-			case 'S':
-				tpsSec = input.nextDouble();
-				finalTps = tpsSec;
-				tpsChoiceName = "Seconds";
-				break;				
+			System.out.print(prompt);
+
+			temp_tps = input.nextLine();
+
+			if(temp_tps.isEmpty()){
+				System.out.println("Error: Input cannot be empty!");
+			}
+
+			else if(temp_tps.matches("[A-Za-z]+")){
+				System.out.println("Error: Please only input numbers!");
+			}
+			else {
+
+				switch(tpsChoice){
+
+					case 'h':
+						//tpsHour = input.nextDouble();
+						tpsHour = Double.parseDouble(temp_tps);
+						//for hours, divide by 60 to get mins, and then 60 again to get seconds (final calc has to be in secs)
+						finalTps = tpsHour / 3600;
+						tpsChoiceName = "Hours";
+						break;
+					case 'H':
+						//tpsHour = input.nextDouble();
+						tpsHour = Double.parseDouble(temp_tps);
+						finalTps = tpsHour / 3600;
+						tpsChoiceName = "Hours";
+						break;
+					case 'm':
+						//tpsMin = input.nextDouble();
+						tpsMin = Double.parseDouble(temp_tps);
+						finalTps = tpsMin / 60;
+						tpsChoiceName = "Minutes";
+						break;
+					case 'M':
+						//tpsMin = input.nextDouble();
+						tpsMin = Double.parseDouble(temp_tps);
+						finalTps = tpsMin / 60;
+						tpsChoiceName = "Minutes";
+						break;
+					case 's':
+						//tpsSec = input.nextDouble();
+						tpsSec = Double.parseDouble(temp_tps);
+						finalTps = tpsSec;
+						tpsChoiceName = "Seconds";
+						break;
+					case 'S':
+						//tpsSec = input.nextDouble();
+						tpsSec = Double.parseDouble(temp_tps);
+						finalTps = tpsSec;
+						tpsChoiceName = "Seconds";
+						break;				
+
+				}
+
+
+			}
 
 		}
+		while(finalTps == 0.0);
+
+
 
 		System.out.println("\n\nCalculating number of users required....\n\n");
 		
