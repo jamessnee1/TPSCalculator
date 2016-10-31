@@ -7,7 +7,7 @@ public class Main {
 
 		Scanner input = new Scanner(System.in);
 		double oneExecution = 0.0, pacingTime = 0.0, finalTps = 0.0, tpsHour = 0.0, tpsMin = 0.0, tpsSec = 0.0, numOfUsers = 0.0;
-		String testCaseName = null, strOneExecution = null;
+		String testCaseName = null, strOneExecution = null, strInput = null;
 		char tpsChoice;
 
 		System.out.println("\n\n");
@@ -43,7 +43,23 @@ public class Main {
 
 
 		System.out.print("Please enter any pacing you wish to add (press enter for none): ");
-		pacingTime = input.nextDouble();
+		strInput = input.nextLine();
+		
+		if(strInput.isEmpty()){
+			pacingTime = 0.0;
+		}
+		else {
+
+			if(strInput.matches("[A-Za-z]+")){
+				System.out.println("Illegal characters detected, pacing set to 0.0");
+				pacingTime = 0.0;
+			}
+			else{
+				pacingTime = Double.parseDouble(strInput);
+			}
+
+		}
+		
 
 
 		do {
