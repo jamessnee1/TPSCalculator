@@ -48,7 +48,7 @@ public class Main {
 		
 
 
-		System.out.print("Please enter any pacing you wish to add (press enter for none): ");
+		System.out.print("Please enter the overall pacing you wish to add (press enter for none): ");
 		strInput = input.nextLine();
 		
 		if(strInput.isEmpty()){
