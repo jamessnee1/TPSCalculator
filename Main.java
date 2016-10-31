@@ -11,7 +11,7 @@ public class Main {
 		char tpsChoice;
 
 		System.out.println("\n\n");
-		System.out.println("Throughput Calculator");
+		System.out.println("Throughput Calculator - Concurrent Users");
 		System.out.println("By James Snee");
 		System.out.println("---------------------\n\n");
 		System.out.println("Using Little's Law, This program will calculate the number of");

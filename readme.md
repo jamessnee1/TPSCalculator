@@ -1,4 +1,4 @@
-#TPS Calculator
+#Throughput Calculator - Concurrent Users
 ######By James Snee
 
 ```
