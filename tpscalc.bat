@@ -1,3 +1,3 @@
 @echo off
-java -jar tpscalc.jar
+java -jar Main.jar
 pause
