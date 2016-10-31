@@ -7,7 +7,7 @@ public class Main {
 
 		Scanner input = new Scanner(System.in);
 		double oneExecution = 0.0, pacingTime = 0.0, finalTps = 0.0, tpsHour = 0.0, tpsMin = 0.0, tpsSec = 0.0, numOfUsers = 0.0;
-		String testCaseName = null, strOneExecution = null, strInput = null, tpsChoiceName = null;
+		String testCaseName = null, strOneExecution = null, strInput = null, tpsChoiceName = null, prompt = null;
 		char tpsChoice;
 
 		System.out.println("\n\n");
@@ -75,6 +75,17 @@ public class Main {
 			System.out.print("(Enter h, m or s): ");
 			tpsChoice = input.next().charAt(0);
 
+			//set the next prompt to reflect choice
+			if(tpsChoice == 'h' || tpsChoice == 'H'){
+				prompt = "Please enter your Transactions Per Hour: ";
+			}
+			else if(tpsChoice == 'm' || tpsChoice == 'M'){
+				prompt = "Please enter your Transactions Per Minute: ";
+			}
+			else if(tpsChoice == 's' || tpsChoice == 'S'){
+				prompt = "Please enter your Transactions Per Second: ";
+			}
+
 			if(tpsChoice != 'h' && tpsChoice != 'm' && tpsChoice != 's' && tpsChoice != 'H' && tpsChoice != 'M' && tpsChoice != 'S'){
 				System.out.println("Error: Please choose either h, m or s!");
 			}
@@ -82,7 +93,7 @@ public class Main {
 		}
 		while(tpsChoice != 'h' && tpsChoice != 'm' && tpsChoice != 's' && tpsChoice != 'H' && tpsChoice != 'M' && tpsChoice != 'S');
 
-		System.out.print("Please enter your Transactions Per Second(TPS): ");
+		System.out.print(prompt);
 
 		switch(tpsChoice){
 
