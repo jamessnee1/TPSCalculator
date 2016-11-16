@@ -1,7 +1,20 @@
 import java.io.*;
+import java.lang.*;
 import java.util.Scanner;
 
 public class Main {
+
+	public static void calculatePacing(float users, float transactionsPerHour){
+			
+			float pacing = transactionsPerHour / users;
+			float tpm = 60/pacing;
+			float minTime = Math.round(0.98 * tpm * 60);
+			float maxTime = Math.round(1.02 * tpm * 60);
+
+			System.out.printf("Minimum overall pacing: %.2f seconds.\n", minTime);
+			System.out.printf("Maximum overall pacing: %.2f seconds.\n", maxTime);
+	}
+
 
 	public static void main(String[] args){
 
@@ -180,6 +193,22 @@ public class Main {
 		if(pacingTime > 0){
 			System.out.printf("Pacing chosen: %.2f seconds\n", pacingTime);
 		}
+
+		if(tpsChoiceName.equals("Hours")){
+			calculatePacing((float)numOfUsers, (float)tpsHour);
+		}
+		else if(tpsChoiceName.equals("Minutes")){
+			//convert to hours again
+			tpsHour = tpsMin * 60;
+			calculatePacing((float)numOfUsers, (float)tpsHour);
+
+		}
+		else if(tpsChoiceName.equals("Seconds")){
+			tpsHour = tpsSec * 3600;
+			calculatePacing((float)numOfUsers, (float)tpsHour);
+
+		}
+		
 
 		System.out.println("TPS Format: " + tpsChoiceName);
 		System.out.printf("Transactions Per Second: %.2f seconds\n", finalTps);
