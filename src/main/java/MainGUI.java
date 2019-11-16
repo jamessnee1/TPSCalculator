@@ -71,22 +71,16 @@ public class MainGUI extends JPanel {
             switch(tpsChoice){
                 case "Hours":
                     tpsHour = Double.parseDouble(temp_tps);
-                    System.out.println("tpsHour: " + tpsHour);
                     //for hours, divide by 60 to get mins, and then 60 again to get seconds (final calc has to be in secs)
                     finalTps = tpsHour / 3600;
-                    System.out.println("Final TPS TransactionsPerHour: " + finalTps);
                     break;
                 case "Minutes":
                     tpsMin = Double.parseDouble(temp_tps);
-                    System.out.println("tpsMin: " + tpsMin);
                     finalTps = tpsMin / 60;
-                    System.out.println("Final TPS TransactionsPerHour: " + finalTps);
                     break;
                 case "Seconds":
                     tpsSec = Double.parseDouble(temp_tps);
-                    System.out.println("tpsSec: " + tpsSec);
                     finalTps = tpsSec;
-                    System.out.println("Final TPS TransactionsPerHour: " + finalTps);
                     break;
             }
         }
