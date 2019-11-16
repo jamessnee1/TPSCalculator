@@ -1,22 +1,28 @@
-import java.io.*;
+package Old;
+
 import java.lang.*;
 import java.util.Scanner;
 
 public class Main {
 
 	public static void calculatePacing(float users, float transactionsPerHour){
-			
-			float pacing = transactionsPerHour / users;
-			float tpm = 60/pacing;
-			float minTime = Math.round(0.98 * tpm * 60);
-			float maxTime = Math.round(1.02 * tpm * 60);
 
-			System.out.printf("Minimum overall pacing: %.2f seconds.\n", minTime);
-			System.out.printf("Maximum overall pacing: %.2f seconds.\n", maxTime);
+		float pacing = transactionsPerHour / users;
+		float tpm = 60/pacing;
+		float minTime = Math.round(0.98 * tpm * 60);
+		float maxTime = Math.round(1.02 * tpm * 60);
+		System.out.println("Pacing: " + pacing + " = transactionsPerHour: " + transactionsPerHour + " divided by users: " + users);
+
+		System.out.printf("Minimum overall pacing: %.2f seconds.\n", minTime);
+		System.out.printf("Maximum overall pacing: %.2f seconds.\n", maxTime);
 	}
 
 
 	public static void main(String[] args){
+		/*
+		 * By James
+		 * This script is the old console-based version of the Calculator
+		 */
 
 		Scanner input = new Scanner(System.in);
 		double oneExecution = 0.0, pacingTime = 0.0, finalTps = 0.0, tpsHour = 0.0, tpsMin = 0.0, tpsSec = 0.0, numOfUsers = 0.0;
@@ -44,7 +50,7 @@ public class Main {
 			else{
 				System.out.println("Please enter the time it takes for " + testCaseName + " to execute: ");
 			}
-			
+
 			System.out.print("(Enter in seconds): ");
 			strOneExecution = input.nextLine();
 
@@ -60,12 +66,12 @@ public class Main {
 
 		}
 		while(oneExecution == 0.0);
-		
+
 
 
 		System.out.print("Please enter the overall pacing you wish to add (press enter for none): ");
 		strInput = input.nextLine();
-		
+
 		if(strInput.isEmpty()){
 			pacingTime = 0.0;
 		}
@@ -80,7 +86,7 @@ public class Main {
 			}
 
 		}
-		
+
 
 
 		do {
@@ -124,6 +130,8 @@ public class Main {
 			}
 			else {
 
+				System.out.println("Temp TPS: " + temp_tps);
+
 				switch(tpsChoice){
 
 					case 'h':
@@ -162,7 +170,7 @@ public class Main {
 						tpsSec = Double.parseDouble(temp_tps);
 						finalTps = tpsSec;
 						tpsChoiceName = "Seconds";
-						break;				
+						break;
 
 				}
 
@@ -172,10 +180,9 @@ public class Main {
 		}
 		while(finalTps == 0.0);
 
-
-
+		System.out.println("Final TPS: " + finalTps);
 		System.out.println("\n\nCalculating number of users required....\n\n");
-		
+
 
 		//do Littles Law calculation
 		numOfUsers = (oneExecution + pacingTime) * finalTps;
@@ -208,7 +215,7 @@ public class Main {
 			calculatePacing((float)numOfUsers, (float)tpsHour);
 
 		}
-		
+
 
 		System.out.println("TPS Format: " + tpsChoiceName);
 		System.out.printf("Transactions Per Second: %.2f seconds\n", finalTps);

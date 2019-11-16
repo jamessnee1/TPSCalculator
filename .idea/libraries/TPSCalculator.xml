@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="TPSCalculator">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Main.jar!/" />
+      <root url="jar://$PROJECT_DIR$/throughputcalc.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
