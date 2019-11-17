@@ -55,6 +55,9 @@ public class Helper {
                 System.out.println("Illegal characters detected, pacing set to 0.0");
                 pacingTime = 0.0;
             }
+            else if(!strInput.matches("[0-9.]+")){
+                pacingTime = 0.0;
+            }
             else{
                 pacingTime = Double.parseDouble(strInput);
             }

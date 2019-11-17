@@ -181,6 +181,9 @@ public class MainGUI extends JPanel {
                     if(pacingTime > 0){
                         pacingString = String.format("Pacing chosen: %.2f seconds.\n", pacingTime);
                     }
+                    else if(pacingTime == 0){
+                        pacingString = "Illegal characters detected, pacing set to 0.\n";
+                    }
                     String output = String.format("Test Case: " + testCaseNameString + "\n" +
                                     "Time taken for one execution: %.2f seconds.\n" +
                                     pacingString +
