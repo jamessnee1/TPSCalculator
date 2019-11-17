@@ -141,6 +141,9 @@ public class MainGUI extends JPanel {
 
                 temp_tps = transactionsField.getText();
 
+                //Temporary check to make sure all options set correctly
+                tpsHour = Helper.checkTransactionsField(temp_tps, tpsChoiceString);
+
                 if(oneExecution != -1 && finalTps != -1 && tpsHour != -1){
                     allOptionsSetCorrectly = true;
                 }
