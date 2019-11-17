@@ -1,5 +1,6 @@
-#Throughput Calculator - Concurrent Users
-##By James Snee
+Throughput Calculator - Concurrent Users
+
+By James Snee
 
 
 This Throughput Calculator will calculate the number of 
